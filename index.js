@@ -12,11 +12,11 @@ const createSql =
 var db = new sqlite3.Database("./database/test.db");
 db.run(createSql);
 
-app.get("/", (req, res) => {
+app.get("/subscribe", (req, res) => {
   res.json({ message: "Status OK" });
 });
 
-app.get("/subscriptions", (req, res) => {
+app.get("/subscribe/subscriptions", (req, res) => {
   const sql = "SELECT * FROM booking ORDER BY id";
   db.all(sql, [], (err, rows) => {
     if (err) {
@@ -27,7 +27,7 @@ app.get("/subscriptions", (req, res) => {
 });
 
 // POST /create
-app.post("/subscription/create", (req, res) => {
+app.post("/subscribe/subscription/create", (req, res) => {
   const sql = "INSERT INTO booking (email, is_subscribed) VALUES (?, ?)";
   console.log(req.body);
   console.log(req.body["email"]);
