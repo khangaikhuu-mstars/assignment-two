@@ -30,9 +30,13 @@ app.get("/subscriptions", (req, res) => {
 app.post("/subscription/create", (req, res) => {
   const sql = "INSERT INTO booking (email, is_subscribed) VALUES (?, ?)";
   console.log(req.body);
+  console.log(req.body["email"]);
   const book = [req.body.email, 1];
   db.run(sql, book, (err) => {
-    res.json({ message: "You have successfully subscribed" });
+    res.json({
+      status: "success",
+      message: "You have successfully subscribed",
+    });
   });
 });
 
