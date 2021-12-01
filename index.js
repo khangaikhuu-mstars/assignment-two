@@ -1,10 +1,12 @@
 var sqlite3 = require("sqlite3").verbose();
 var express = require("express");
 var http = require("http");
+var cors = require("cors");
 
 var app = express();
 var server = http.createServer(app);
 app.use(express.json());
+app.use(cors());
 
 const createSql =
   "CREATE TABLE IF NOT EXISTS booking (id INTEGER PRIMARY KEY AUTOINCREMENT, email VARCHAR(255) NOT NULL,is_subscribed INTEGER NOT NULL DEFAULT 0 CHECK(is_subscribed IN (0,1)) );";
