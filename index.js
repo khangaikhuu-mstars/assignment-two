@@ -43,9 +43,6 @@ app.post("/subscribe/subscription/create", (req, res) => {
     return res.status(500).send(errorMessage);
   }
   db.run(sql, book, (err) => {
-    if (err) {
-      return res.json(errorMessage);
-    }
     res.json({
       status: "success",
       message: "You have successfully subscribed",
