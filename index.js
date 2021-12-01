@@ -39,7 +39,7 @@ app.post("/subscribe/subscription/create", (req, res) => {
   console.log(req.body);
   console.log(req.body["email"]);
   const book = [req.body.email, 1];
-  if (isEmpty(req.body)) {
+  if (isEmpty(req.body) || req.body.email === "") {
     return res.status(500).send(errorMessage);
   }
   db.run(sql, book, (err) => {
